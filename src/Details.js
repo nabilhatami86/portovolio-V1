@@ -1,6 +1,6 @@
 // Enter all your detials in this file
 // Logo images
-import logogradient from "./assets/logo.svg";
+import logogradient from "./assets/logo.png";
 import logo from "./assets/logo2.svg";
 // Profile Image
 import profile from "./assets/Profile.png";
@@ -8,11 +8,14 @@ import profile from "./assets/Profile.png";
 import html from "./assets/techstack/html.png";
 import css from "./assets/techstack/css.png";
 import python from "./assets/techstack/python.png";
+import node from "./assets/techstack/node.png";
 import js from "./assets/techstack/js.png";
+import ts from "./assets/techstack/ts.png";
 import react from "./assets/techstack/react.png";
 import redux from "./assets/techstack/redux.png";
 import tailwind from "./assets/techstack/tailwind.png";
 import bootstrap from "./assets/techstack/bootstrap.png";
+import sass from "./assets/techstack/sass.png";
 import vscode from "./assets/techstack/vscode.png";
 import github from "./assets/techstack/github.png";
 import git from "./assets/techstack/git.png";
@@ -20,6 +23,12 @@ import npm from "./assets/techstack/npm.png";
 import postman from "./assets/techstack/postman.png";
 import figma from "./assets/techstack/figma.png";
 import cloud from "./assets/techstack/cloud.png";
+import cisco from "./assets/techstack/cisco.png";
+import winbox from "./assets/techstack/mikrotik.jpg";
+import mongodb from "./assets/techstack/mongodb.png";
+import mysql from "./assets/techstack/mysql.png";
+import firebase from "./assets/techstack/firebase.png";
+
 // Porject Images
 import projectImage1 from "./assets/projects/SNKI.png";
 import projectImage2 from "./assets/projects/foodie.png";
@@ -45,7 +54,7 @@ export const logos = {
 // Enter your Personal Details here
 export const personalDetails = {
   name: "Muhammad Nabil Hatami",
-  tagline: "I build things for web",
+  tagline: "Building technology, creating the future.🚀✨",
   img: profile,
   about: `I am Muhammad Nabil Hatami, a student at Nahdlatul Ulama University Indonesia, majoring in Informatics Engineering. Currently, I am in my 7th semester. I have a strong interest in web development and information technology. With a solid academic background and various practical experiences, I am committed to continuously learning and growing in this field`,
 };
@@ -68,7 +77,7 @@ export const workDetails = [
     Duration: "Nov 2023 - Feb 2024",
   },
   {
-    Position: "Magang",
+    Position: "Internsip",
     Company: `Kementrian Koordinasi Bidang Perekonomian`,
     Location: "Jakarta",
     Type: "Full Time",
@@ -80,7 +89,7 @@ export const workDetails = [
 export const eduDetails = [
   {
     Position: "Fullstack Developer",
-    Company: "EDUWORK",
+    Company: "Eduwork",
     Location: "Online",
     Type: "Bootcamp",
     Duration: "Sep 2024 - Jan 2025",
@@ -105,19 +114,27 @@ export const eduDetails = [
 export const techStackDetails = {
   html: html,
   css: css,
+  node: node,
   js: js,
+  ts: ts,
   python: python,
   react: react,
   redux: redux,
   tailwind: tailwind,
   bootstrap: bootstrap,
+  sass: sass,
   vscode: vscode,
   postman: postman,
   npm: npm,
+  cloud: cloud,
   git: git,
   github: github,
   figma: figma,
-  cloud: cloud,
+  mysql: mysql,
+  mongodb: mongodb,
+  firebase: firebase,
+  winbox: winbox,
+  cisco: cisco,
 };
 
 // Enter your Project Details here
