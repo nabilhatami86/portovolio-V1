@@ -1,6 +1,9 @@
 # React Developer Portfolio template
-#### Live Demo https://react-portfolio-v1.netlify.app/
+
+#### Live Demo
+
 #### Figma Design https://www.figma.com/community/file/1116246660507537002
+
 ### Preview ( Dark Mode )
 
 <img src="/preview.gif" alt="preview" width="600px" />
@@ -14,12 +17,10 @@
 ```javascript
 / Enter your Personal Details here
 export const personalDetails = {
-  name: "Pavan MG",
-  tagline: "I build things for web",
+  name: "Muhammad Nabil Hatami",
+  tagline: "Building technology, creating the future.🚀✨",
   img: profile,
-  about: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-  when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+  about: `I am Muhammad Nabil Hatami, a student at Nahdlatul Ulama University Indonesia, majoring in Informatics Engineering. Currently, I am in my 7th semester. I have a strong interest in web development and information technology. With a solid academic background and various practical experiences, I am committed to continuously learning and growing in this field`,
 };
 
 // Enter your Social Media URLs here
@@ -33,12 +34,19 @@ export const socialMediaUrl = {
 // Enter your Work Experience here
 export const workDetails = [
   {
-    Position: "Frontend Web Developer",
-    Company: `Company Name here`,
-    Location: "Bengaluru",
+    Position: "Cloud Engineer",
+    Company: ` Difa APP`,
+    Location: "Online",
+    Type: "Capstone Project",
+    Duration: "Nov 2023 - Feb 2024",
+  },
+  {
+    Position: "Internsip",
+    Company: `Kementrian Koordinasi Bidang Perekonomian`,
+    Location: "Jakarta",
     Type: "Full Time",
-    Duration: "Sep 2021 - Dec 2021",
-  }
+    Duration: "Apr 2024 - Jul 2024",
+  },
 ];
 
 // Enter your Education Details here
