@@ -6,15 +6,12 @@ function Footer() {
         Designed and Coded by{" "}
         <a
           className="font-medium"
-          // href="https://pavanmg.in"
+          href="https://pavanmg.in"
           target="_blank"
           rel="noreferrer noopener"
         >
           Muhammad Nabil Hatami
-        </a>{" "}
-        with
-        <span className="text-gradient font-medium"> Love</span> &
-        <span className="text-gradient font-medium"> Coffee</span>
+        </a>
       </p>
     </footer>
   );
