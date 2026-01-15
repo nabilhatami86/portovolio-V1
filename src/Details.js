@@ -28,6 +28,9 @@ import winbox from "./assets/techstack/mikrotik.jpg";
 import mongodb from "./assets/techstack/mongodb.png";
 import mysql from "./assets/techstack/mysql.png";
 import firebase from "./assets/techstack/firebase.png";
+import docker from "./assets/techstack/docker.png";
+import fastapi from "./assets/techstack/fastapi.png";
+import postgresql from "./assets/techstack/postgresql.png";
 
 // Porject Images
 import projectImage1 from "./assets/projects/SNKI.png";
@@ -36,6 +39,8 @@ import projectImage3 from "./assets/projects/fashion.png";
 import projectImage4 from "./assets/projects/admin.png";
 import projectImage5 from "./assets/projects/kominfo.jpg";
 import projectImage6 from "./assets/projects/banner_new.png";
+import projectImage7 from "./assets/projects/project1.jpg";
+import projectImage8 from "./assets/projects/project2.jpg";
 
 //Certificate Images
 import VSGA from "./assets/projects/kominfo.jpg";
@@ -56,7 +61,7 @@ export const personalDetails = {
   name: "Muhammad Nabil Hatami",
   tagline: "Building technology, creating the future.🚀✨",
   img: profile,
-  about: `I am Muhammad Nabil Hatami, a student at Nahdlatul Ulama University Indonesia, majoring in Informatics Engineering. Currently, I am in my 7th semester. I have a strong interest in web development and information technology. With a solid academic background and various practical experiences, I am committed to continuously learning and growing in this field`,
+  about: `I am Muhammad Nabil Hatami, a graduate of Nahdlatul Ulama University Indonesia with a degree in Informatics Engineering, where I was honored as the Best Graduate in the Faculty of Engineering and Computer Science. Currently, I work as an IT Developer at Daya Otomasi Asia and as a Freelance Software Engineer at Badja Studio. With a strong foundation in web development and information technology, I am passionate about building innovative solutions and continuously expanding my expertise in this ever-evolving field.`,
 };
 
 // Enter your Social Media URLs here
@@ -70,23 +75,44 @@ export const socialMediaUrl = {
 // Enter your Work Experience here
 export const workDetails = [
   {
-    Position: "Cloud Engineer",
-    Company: ` Difa APP`,
-    Location: "Online",
-    Type: "Capstone Project",
-    Duration: "Nov 2023 - Feb 2024",
+    Position: "IT Developer",
+    Company: `Daya Otomasi Asia`,
+    Location: "Indonesia",
+    Type: "Full Time",
+    Duration: "2025 - Present",
   },
   {
-    Position: "Internsip",
+    Position: "Software Engineer",
+    Company: `Badja Studio`,
+    Location: "Remote",
+    Type: "Freelance",
+    Duration: "2025 - Present",
+  },
+  {
+    Position: "Internship",
     Company: `Kementrian Koordinasi Bidang Perekonomian`,
     Location: "Jakarta",
     Type: "Full Time",
     Duration: "Apr 2024 - Jul 2024",
   },
+  {
+    Position: "Cloud Engineer",
+    Company: `Difa APP`,
+    Location: "Online",
+    Type: "Capstone Project",
+    Duration: "Nov 2023 - Feb 2024",
+  },
 ];
 
 // Enter your Education Details here
 export const eduDetails = [
+  {
+    Position: "Bachelor in Informatics Engineering",
+    Company: `Universitas Nahdlatul Ulama Indonesia`,
+    Location: "Jakarta",
+    Type: "Best Graduate - Faculty of Engineering & Computer Science",
+    Duration: "Sep 2021 - 2025",
+  },
   {
     Position: "Fullstack Developer",
     Company: "Eduwork",
@@ -100,13 +126,6 @@ export const eduDetails = [
     Location: "Online",
     Type: "MSIB",
     Duration: "Aug 2023 - Feb 2024",
-  },
-  {
-    Position: "Bachelor in Informatic Engineer",
-    Company: `Universitas Nahdlatul Ulama Indonesi`,
-    Location: "Jakarta",
-    Type: "Full Time",
-    Duration: "Sep 2021 - Present",
   },
 ];
 
@@ -135,6 +154,9 @@ export const techStackDetails = {
   firebase: firebase,
   winbox: winbox,
   cisco: cisco,
+  docker: docker,
+  fastapi: fastapi,
+  postgresql: postgresql,
 };
 
 // Enter your Project Details here
@@ -186,6 +208,22 @@ export const projectDetails = [
     techstack: "Express, Mysql",
     previewLink: "https://google.com",
     githubLink: "https://github.com/DifaApp/CC-Difa-App",
+  },
+  {
+    title: "Asesmen Baca Al-Quran Guru Madrasah",
+    image: projectImage7,
+    description: `A comprehensive web-based assessment platform for evaluating Quran reading skills of Madrasah teachers across Indonesia. Features include assessment management, scoring system, and detailed reporting for nationwide teacher evaluation.`,
+    techstack: "React, Vite, Tailwind CSS",
+    previewLink: "https://google.com",
+    githubLink: "https://github.com/nabilhatami86",
+  },
+  {
+    title: "TaniPintar - Smart Farming App",
+    image: projectImage8,
+    description: `A mobile application designed to help farmers with smart agricultural solutions. Features include crop monitoring, weather forecasting, market prices, and expert consultation to improve farming productivity.`,
+    techstack: "React Native, Tailwind CSS, Expo",
+    previewLink: "https://google.com",
+    githubLink: "https://github.com/nabilhatami86",
   },
 ];
 

@@ -1,20 +1,64 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { contactDetails } from "../Details";
+import gsap from "gsap";
 
 function Contact() {
   const { email, phone } = contactDetails;
+
+  const titleRef = useRef(null);
+  const emailRef = useRef(null);
+  const orRef = useRef(null);
+  const phoneRef = useRef(null);
+
+  useEffect(() => {
+    if (!titleRef.current) return;
+
+    gsap.from(titleRef.current, {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    });
+
+    gsap.from([emailRef.current, orRef.current, phoneRef.current], {
+      y: 20,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      delay: 0.3,
+      ease: "power3.out",
+    });
+  }, []);
+
   return (
-    <main className="container mx-auto max-width section">
-      <h1 className="text-center text-2xl md:text-3xl lg:text-6xl text-dark-heading dark:text-light-heading font-semibold md:font-bold">
-        For any questions please drop a mail
+    <main className="container mx-auto max-width pt-32 pb-24 flex flex-col items-center text-center">
+      <h1
+        ref={titleRef}
+        className="text-2xl md:text-4xl lg:text-6xl font-bold text-dark-heading dark:text-light-heading max-w-4xl"
+      >
+        Let’s build something great together
       </h1>
-      <h3 className="text-center text-3xl md:text-4xl lg:text-6xl text-gradient font-semibold md:font-bold pt-5 md:pt-10 md:pb-6">
+
+      {/* EMAIL */}
+      <h3
+        ref={emailRef}
+        className="mt-10 text-3xl md:text-4xl lg:text-6xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+      >
         <a href={`mailto:${email}`}>{email}</a>
       </h3>
-      <span className="text-center text-content text-xl font-light block">
+
+      <span
+        ref={orRef}
+        className="my-6 text-xl text-gray-500 dark:text-gray-400"
+      >
         or
       </span>
-      <h3 className="text-center text-3xl md:text-4xl lg:text-6xl text-gradient font-semibold md:font-bold pt-2 md:py-6">
+
+      {/* PHONE */}
+      <h3
+        ref={phoneRef}
+        className="text-3xl md:text-4xl lg:text-6xl font-extrabold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+      >
         <a href={`tel:${phone}`}>{phone}</a>
       </h3>
     </main>

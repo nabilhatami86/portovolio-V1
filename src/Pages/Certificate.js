@@ -4,63 +4,69 @@ import { certificateDetails } from "../Details";
 import gsap from "gsap";
 
 function Certificates() {
-  const sectionRef = useRef();
+  const titleRef = useRef(null);
+  const gridRef = useRef(null);
 
   useEffect(() => {
-    const tl = gsap.timeline();
+    if (!titleRef.current || !gridRef.current) return;
 
-    // Animasi judul "Certificate"
-    tl.from(sectionRef.current.querySelector("h1"), {
+    // TITLE
+    gsap.from(titleRef.current, {
+      y: 30,
       opacity: 0,
-      y: -50,
-      duration: 1.5,
-      ease: "power4.out",
+      duration: 0.8,
+      ease: "power3.out",
     });
 
-    // Animasi setiap sertifikat
-    tl.fromTo(
-      sectionRef.current.querySelectorAll(".certificate-card"),
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.3,
-        duration: 1.5,
-        ease: "power3.out",
-      },
-      "<"
-    );
+    // CERTIFICATE CARDS
+    gsap.from(gridRef.current.children, {
+      y: 40,
+      opacity: 0,
+      stagger: 0.15,
+      duration: 0.8,
+      delay: 0.3,
+      ease: "power3.out",
+    });
   }, []);
 
   return (
-    <main className="container mx-auto max-width pt-10 mb-20">
-      <section ref={sectionRef}>
-        <h1 className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold text-start mb-8 animate__animated animate__fadeIn">
-          Certificate
+    <main className="container mx-auto max-width pt-32 pb-24">
+      {/* HEADER */}
+      <section className="mb-12">
+        <h1
+          ref={titleRef}
+          className="text-3xl md:text-5xl font-bold text-dark-heading dark:text-light-heading"
+        >
+          Certificates
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {React.Children.toArray(
-            certificateDetails.map(
-              (
-                { title, image, description, techstack, CertificateLink },
-                index
-              ) => (
-                <div className="certificate-card flex flex-col justify-between bg-white p-2 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                  <Certificate
-                    title={title}
-                    image={image}
-                    description={description}
-                    techstack={techstack}
-                    CertificateLink={CertificateLink}
-                  />
-                </div>
-              )
-            )
-          )}
-        </div>
+
+        <div className="mt-4 h-1 w-20 bg-purple-500 rounded-full" />
+      </section>
+
+      {/* CERTIFICATE GRID */}
+      <section
+        ref={gridRef}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+      >
+        {certificateDetails.map(
+          (
+            { title, image, description, techstack, CertificateLink },
+            index
+          ) => (
+            <div
+              key={index}
+              className="flex flex-col justify-between bg-white dark:bg-neutral-900 p-3 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+            >
+              <Certificate
+                title={title}
+                image={image}
+                description={description}
+                techstack={techstack}
+                CertificateLink={CertificateLink}
+              />
+            </div>
+          )
+        )}
       </section>
     </main>
   );

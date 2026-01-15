@@ -8,45 +8,80 @@ function Certificate({
   CertificateLink,
 }) {
   return (
-    <article className="rounded-xl mt-10 overflow-hidden shadow-xl shadow-slate-300 dark:shadow-slate-900">
-      <img src={image} alt="" loading="lazy" />
-      <div className="dark:bg-dark-card p-4">
-        <h1 className="dark:text-light-heading font-semibold text-lg pt-1">
+    <article className="group h-full flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-dark-card">
+      {/* IMAGE - With padding like Home */}
+      <div className="relative h-40 overflow-hidden bg-gray-100 dark:bg-neutral-800 p-3">
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500 rounded-lg"
+        />
+        {/* Badge overlay */}
+        <div className="absolute top-3 right-3 z-10">
+          <span className="px-2 py-1 text-[10px] font-semibold rounded-full bg-purple-500 text-white shadow-lg">
+            Certificate
+          </span>
+        </div>
+      </div>
+
+      {/* CONTENT - Flex grow to fill space */}
+      <div className="flex-1 flex flex-col p-4">
+        {/* TITLE - 2 lines max */}
+        <h3 className="text-sm font-semibold text-dark-heading dark:text-light-heading line-clamp-2 min-h-[2.5rem]">
           {title}
-        </h1>
-        <p className="text-content pt-4 font-light">{description}</p>
-        <h3 className="text-dark-heading dark:text-light-heading font-medium pt-4">
-          Tech Stack : <span className="font-light">{techstack}</span>
         </h3>
 
-        <div className="flex justify-end items-end mt-4">
-          <div className="flex items-center">
-            <svg
-              className="dark:fill-light-heading fill-dark-heading inline-block min-w-fit"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlSpace="preserve"
-              id="Capa_1"
-              width="30"
-              height="30"
-              x="0"
-              y="0"
-              version="1.1"
-              viewBox="0 0 459 459"
-            >
-              <path d="M286.875 239.062h114.75v19.125h-114.75zM229.5 181.688h172.125v19.125H229.5z"></path>
-              <path d="M420.75 28.688H38.25C17.212 28.688 0 45.9 0 66.938v248.625c0 21.037 17.212 38.25 38.25 38.25H76.5v76.5l47.812-47.812 47.812 47.812v-76.5H420.75c21.037 0 38.25-17.213 38.25-38.25V66.938c0-21.038-17.213-38.25-38.25-38.25M153 384.412l-28.688-28.688-28.688 28.688v-74.587q14.343 5.737 28.688 5.737c14.345 0 19.125-1.912 28.688-5.737zm-28.688-87.974c-26.775 0-47.812-21.037-47.812-47.812s21.038-47.812 47.812-47.812 47.812 21.037 47.812 47.812-21.037 47.812-47.812 47.812m315.563 19.124c0 11.475-7.65 19.125-19.125 19.125H172.125v-40.162c11.475-11.476 19.125-28.688 19.125-45.9 0-36.337-30.6-66.938-66.938-66.938s-66.938 30.6-66.938 66.938c0 19.125 7.65 34.425 19.125 45.9v40.162H38.25c-11.475 0-19.125-9.562-19.125-19.125V66.938c0-11.475 7.65-19.125 19.125-19.125h382.5c11.475 0 19.125 9.562 19.125 19.125z"></path>
-              <path d="M57.375 124.312h344.25v19.125H57.375z"></path>
-            </svg>
+        {/* DESCRIPTION - 3 lines max */}
+        <p className="mt-2 text-xs leading-relaxed text-gray-600 dark:text-gray-400 line-clamp-3 min-h-[3.5rem]">
+          {description}
+        </p>
 
-            <a
-              href={CertificateLink}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="underline pl-2 font-light dark:text-white z-10 pointer-events-auto"
-            >
-              Certificate
-            </a>
+        {/* TECH STACK - Badges style */}
+        {techstack && techstack.trim() !== "" && (
+          <div className="mt-3 flex flex-wrap gap-1">
+            {techstack
+              .split(",")
+              .slice(0, 3)
+              .map((tech, idx) => (
+                <span
+                  key={idx}
+                  className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
+                >
+                  {tech.trim()}
+                </span>
+              ))}
+            {techstack.split(",").length > 3 && (
+              <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-gray-100 dark:bg-neutral-700 text-gray-500 dark:text-gray-400">
+                +{techstack.split(",").length - 3}
+              </span>
+            )}
           </div>
+        )}
+
+        {/* VIEW CERTIFICATE - Push to bottom */}
+        <div className="mt-auto pt-4 flex justify-center border-t border-gray-100 dark:border-neutral-700">
+          <a
+            href={CertificateLink}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-md hover:shadow-lg"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+              />
+            </svg>
+            View Certificate
+          </a>
         </div>
       </div>
     </article>
