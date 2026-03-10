@@ -1,7 +1,12 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  User, Briefcase, GraduationCap, LayoutGrid, Award,
+  Download, Github, Trophy, Cloud, Rocket,
+} from "lucide-react";
 import { personalDetails, workDetails, eduDetails, projectDetails, techStackDetails, certificateDetails } from "../Details";
+import { socialMediaUrl } from "../Details";
 import Work from "../Components/Work";
 import Project from "../Components/Project";
 import Certificate from "../Components/Certificate";
@@ -69,13 +74,17 @@ function Home() {
     let index = 0;
     setDisplayedName("");
 
-    const interval = setInterval(() => {
-      setDisplayedName((prev) => prev + name.charAt(index));
-      index++;
-      if (index >= name.length) clearInterval(interval);
-    }, 80);
+    let timeout;
+    const type = () => {
+      if (index < name.length) {
+        setDisplayedName(name.slice(0, index + 1));
+        index++;
+        timeout = setTimeout(type, 80);
+      }
+    };
+    timeout = setTimeout(type, 80);
 
-    return () => clearInterval(interval);
+    return () => clearTimeout(timeout);
   }, [name]);
 
   // HERO ANIMATIONS
@@ -300,7 +309,7 @@ function Home() {
           </h1>
 
           {/* TYPEWRITER NAME */}
-          <h1 className="mt-2 text-3xl md:text-5xl xl:text-6xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight">
+          <h1 className="mt-2 text-3xl md:text-5xl xl:text-6xl font-extrabold bg-gradient-to-r from-blue-400 via-blue-500 to-blue-700 bg-clip-text text-transparent leading-tight">
             {displayedName}
             <span className="animate-pulse">|</span>
           </h1>
@@ -313,25 +322,43 @@ function Home() {
           </h2>
 
           {/* CTA */}
-          <div className="mt-8 flex gap-4">
+          <div className="mt-8 flex flex-wrap gap-3">
             <button
               onClick={() => scrollToSection("projects")}
-              className="px-7 py-3 rounded-full bg-blue-600 text-white font-semibold hover:scale-105 transition-all duration-300 shadow-xl"
+              className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold hover:scale-105 transition-all duration-300 shadow-xl"
             >
               View Portfolio
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="px-7 py-3 rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300"
+              className="px-6 py-3 rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300"
             >
               About Me
             </button>
+            <a
+              href="https://drive.google.com/drive/u/0/folders/1F7hG13AyZ18oEePdRuNN2bVPhA5WCjLR"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="px-6 py-3 rounded-full border border-green-500 text-green-600 dark:text-green-400 hover:bg-green-500 hover:text-white transition-all duration-300 flex items-center gap-2"
+            >
+              <Download className="w-4 h-4" />
+              Download CV
+            </a>
+            <a
+              href={socialMediaUrl.github}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="px-6 py-3 rounded-full border border-gray-400 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-800 hover:text-white hover:border-gray-800 transition-all duration-300 flex items-center gap-2"
+            >
+              <Github className="w-4 h-4" />
+              GitHub
+            </a>
           </div>
         </div>
 
         {/* IMAGE */}
         <div className="relative z-10 mt-12 md:mt-0">
-          <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full blur-2xl opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-blue-600 rounded-full blur-2xl opacity-40" />
           <img
             ref={imageRef}
             src={img}
@@ -341,20 +368,43 @@ function Home() {
         </div>
       </section>
 
+      {/* KEY HIGHLIGHTS */}
+      <section className="py-16">
+        <div className="container mx-auto max-width">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { icon: <Trophy className="w-6 h-6" />, color: "from-yellow-400 to-orange-500", bg: "bg-yellow-50 dark:bg-yellow-900/20", label: "Best Graduate", sub: "Faculty of Engineering" },
+              { icon: <Briefcase className="w-6 h-6" />, color: "from-blue-400 to-blue-600", bg: "bg-blue-50 dark:bg-blue-900/20", label: "IT Developer", sub: "Daya Otomasi Asia" },
+              { icon: <Cloud className="w-6 h-6" />, color: "from-sky-400 to-cyan-500", bg: "bg-sky-50 dark:bg-sky-900/20", label: "Google Cloud", sub: "Certified" },
+              { icon: <Rocket className="w-6 h-6" />, color: "from-purple-400 to-purple-600", bg: "bg-purple-50 dark:bg-purple-900/20", label: `${projectDetails.length}+ Projects`, sub: "Production Ready" },
+            ].map(({ icon, color, bg, label, sub }, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center text-center p-5 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-xl border border-white/20 dark:border-neutral-800 shadow-lg hover:-translate-y-1 hover:shadow-blue-500/10 transition-all duration-300"
+              >
+                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center text-white mb-3 shadow-md`}>
+                  {icon}
+                </div>
+                <p className="font-bold text-sm md:text-base text-dark-heading dark:text-light-heading">{label}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ABOUT SECTION */}
       <section id="about" className="relative pt-24 pb-16 overflow-hidden">
         {/* Background decorations */}
         <div className="absolute top-20 right-0 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
 
         <div className="container mx-auto max-width relative z-10">
           {/* About Me Card */}
           <div ref={aboutRef} className="mb-24">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                <User className="w-6 h-6 text-white" />
               </div>
               <h1 className="text-3xl md:text-5xl font-bold text-dark-heading dark:text-light-heading">
                 About Me
@@ -362,7 +412,7 @@ function Home() {
             </div>
 
             <div className="relative p-8 rounded-3xl bg-white/50 dark:bg-neutral-900/50 backdrop-blur-xl border border-white/20 dark:border-neutral-800 shadow-xl">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-t-3xl" />
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-blue-500 to-blue-700 rounded-t-3xl" />
               <p className="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-300">
                 {personalDetails.about}
               </p>
@@ -370,19 +420,19 @@ function Home() {
               {/* Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 pt-8 border-t border-gray-200 dark:border-neutral-700">
                 <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
                     {projectDetails.length}+
                   </div>
                   <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Projects</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-500 to-pink-600 bg-clip-text text-transparent">
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
                     {certificateDetails.length}+
                   </div>
                   <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Certificates</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-500 to-red-600 bg-clip-text text-transparent">
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-red-600 bg-clip-text text-transparent">
                     3+
                   </div>
                   <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Years Learning</div>
@@ -402,10 +452,8 @@ function Home() {
             {/* WORK EXPERIENCE */}
             <div className="relative">
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                  <Briefcase className="w-6 h-6 text-white" />
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold text-dark-heading dark:text-light-heading">
                   Work Experience
@@ -417,10 +465,10 @@ function Home() {
                   ({ Position, Company, Location, Type, Duration }, index) => (
                     <div
                       key={index}
-                      className="relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b before:from-purple-500 before:to-blue-500"
+                      className="relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b before:from-blue-500 before:to-blue-500"
                     >
-                      <div className="absolute left-0 top-2 w-2 h-2 -translate-x-[3px] rounded-full bg-purple-500 ring-4 ring-purple-500/20" />
-                      <div className="p-5 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-lg border border-white/20 dark:border-neutral-800 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300 hover:-translate-y-1">
+                      <div className="absolute left-0 top-2 w-2 h-2 -translate-x-[3px] rounded-full bg-blue-500 ring-4 ring-blue-500/20" />
+                      <div className="p-5 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-lg border border-white/20 dark:border-neutral-800 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
                         <Work
                           position={Position}
                           company={Company}
@@ -438,12 +486,8 @@ function Home() {
             {/* EDUCATION */}
             <div className="relative">
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                  </svg>
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-blue-700 flex items-center justify-center">
+                  <GraduationCap className="w-6 h-6 text-white" />
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold text-dark-heading dark:text-light-heading">
                   Education
@@ -455,7 +499,7 @@ function Home() {
                   ({ Position, Company, Location, Type, Duration }, index) => (
                     <div
                       key={index}
-                      className="relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b before:from-pink-500 before:to-purple-500"
+                      className="relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0.5 before:bg-gradient-to-b before:from-blue-400 before:to-blue-600"
                     >
                       <div className="absolute left-0 top-2 w-2 h-2 -translate-x-[3px] rounded-full bg-pink-500 ring-4 ring-pink-500/20" />
                       <div className="p-5 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-lg border border-white/20 dark:border-neutral-800 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300 hover:-translate-y-1">
@@ -488,6 +532,114 @@ function Home() {
           </p>
         </div>
 
+        {/* CATEGORIZED SKILL BARS */}
+        <div className="container mx-auto max-width mb-16">
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Frontend */}
+            <div className="p-6 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-xl border border-white/20 dark:border-neutral-800">
+              <h3 className="text-sm font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-5">Frontend</h3>
+              <div className="space-y-4">
+                {[
+                  { name: "React / Redux", level: 90 },
+                  { name: "JavaScript / TypeScript", level: 85 },
+                  { name: "Tailwind CSS / Bootstrap", level: 90 },
+                  { name: "HTML / CSS / Sass", level: 95 },
+                ].map(({ name, level }) => (
+                  <div key={name}>
+                    <div className="flex justify-between mb-1.5">
+                      <span className="text-sm font-medium text-dark-heading dark:text-light-heading">{name}</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">{level}%</span>
+                    </div>
+                    <div className="h-2 bg-gray-100 dark:bg-neutral-700 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
+                        style={{ width: `${level}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Backend */}
+            <div className="p-6 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-xl border border-white/20 dark:border-neutral-800">
+              <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-widest mb-5">Backend</h3>
+              <div className="space-y-4">
+                {[
+                  { name: "Node.js / Express", level: 80 },
+                  { name: "Python / FastAPI", level: 75 },
+                  { name: "REST API Design", level: 85 },
+                  { name: "PHP", level: 65 },
+                ].map(({ name, level }) => (
+                  <div key={name}>
+                    <div className="flex justify-between mb-1.5">
+                      <span className="text-sm font-medium text-dark-heading dark:text-light-heading">{name}</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">{level}%</span>
+                    </div>
+                    <div className="h-2 bg-gray-100 dark:bg-neutral-700 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-green-400 to-green-600 rounded-full"
+                        style={{ width: `${level}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Database */}
+            <div className="p-6 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-xl border border-white/20 dark:border-neutral-800">
+              <h3 className="text-sm font-bold text-purple-600 dark:text-purple-400 uppercase tracking-widest mb-5">Database</h3>
+              <div className="space-y-4">
+                {[
+                  { name: "MySQL / PostgreSQL", level: 80 },
+                  { name: "MongoDB", level: 75 },
+                  { name: "Firebase", level: 70 },
+                ].map(({ name, level }) => (
+                  <div key={name}>
+                    <div className="flex justify-between mb-1.5">
+                      <span className="text-sm font-medium text-dark-heading dark:text-light-heading">{name}</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">{level}%</span>
+                    </div>
+                    <div className="h-2 bg-gray-100 dark:bg-neutral-700 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full"
+                        style={{ width: `${level}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* DevOps & Tools */}
+            <div className="p-6 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-xl border border-white/20 dark:border-neutral-800">
+              <h3 className="text-sm font-bold text-orange-600 dark:text-orange-400 uppercase tracking-widest mb-5">DevOps & Tools</h3>
+              <div className="space-y-4">
+                {[
+                  { name: "Git / GitHub", level: 85 },
+                  { name: "Docker", level: 65 },
+                  { name: "Google Cloud", level: 70 },
+                  { name: "Figma / Postman", level: 75 },
+                ].map(({ name, level }) => (
+                  <div key={name}>
+                    <div className="flex justify-between mb-1.5">
+                      <span className="text-sm font-medium text-dark-heading dark:text-light-heading">{name}</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">{level}%</span>
+                    </div>
+                    <div className="h-2 bg-gray-100 dark:bg-neutral-700 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-orange-400 to-orange-600 rounded-full"
+                        style={{ width: `${level}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* MARQUEE ROWS */}
         <div className="space-y-6">
           <MarqueeRow items={techRow1} direction="right" />
@@ -499,7 +651,7 @@ function Home() {
           <h2 className="text-3xl md:text-5xl font-bold text-dark-heading dark:text-light-heading">
             Tools
           </h2>
-          <div className="mt-3 h-1 w-20 bg-purple-500 rounded-full" />
+          <div className="mt-3 h-1 w-20 bg-blue-500 rounded-full" />
         </div>
 
         <MarqueeRow items={toolsRow} direction="right" />
@@ -510,9 +662,7 @@ function Home() {
         <div className="container mx-auto max-width mb-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-              </svg>
+              <LayoutGrid className="w-6 h-6 text-white" />
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-dark-heading dark:text-light-heading">
               Projects
@@ -549,16 +699,14 @@ function Home() {
       <section id="certificates" className="pt-24 pb-24">
         <div className="container mx-auto max-width mb-12">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-              </svg>
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+              <Award className="w-6 h-6 text-white" />
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-dark-heading dark:text-light-heading">
               Certificates
             </h1>
           </div>
-          <div className="mt-4 h-1 w-20 bg-purple-500 rounded-full" />
+          <div className="mt-4 h-1 w-20 bg-blue-500 rounded-full" />
           <p className="mt-6 text-lg text-gray-600 dark:text-gray-300">
             Professional certifications and achievements
           </p>

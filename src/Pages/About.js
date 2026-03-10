@@ -62,7 +62,7 @@ function About() {
           Work Experience
         </h1>
 
-        <div className="mt-4 h-1 w-24 bg-purple-500 rounded-full" />
+        <div className="mt-4 h-1 w-24 bg-blue-500 rounded-full" />
 
         <div className="mt-10 space-y-8 border-l-2 border-blue-500/30 pl-6">
           {workDetails.map(

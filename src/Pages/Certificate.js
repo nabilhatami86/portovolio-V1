@@ -40,7 +40,7 @@ function Certificates() {
           Certificates
         </h1>
 
-        <div className="mt-4 h-1 w-20 bg-purple-500 rounded-full" />
+        <div className="mt-4 h-1 w-20 bg-blue-500 rounded-full" />
       </section>
 
       {/* CERTIFICATE GRID */}
