@@ -31,6 +31,7 @@ import firebase from "./assets/techstack/firebase.png";
 import docker from "./assets/techstack/docker.png";
 import fastapi from "./assets/techstack/fastapi.png";
 import postgresql from "./assets/techstack/postgresql.png";
+import nextjs from "./assets/techstack/nextjs.svg";
 
 // Porject Images
 import projectImage1 from "./assets/projects/SNKI.png";
@@ -157,6 +158,7 @@ export const techStackDetails = {
   docker: docker,
   fastapi: fastapi,
   postgresql: postgresql,
+  nextjs: nextjs,
 };
 
 // Enter your Project Details here

@@ -30,7 +30,7 @@ function Home() {
   const {
     html, css, js, ts, node, python, react, redux, tailwind, sass, bootstrap,
     vscode, git, github, npm, postman, figma, cloud, cisco, winbox, mongodb, mysql, firebase,
-    docker, fastapi, postgresql,
+    docker, fastapi, postgresql, nextjs,
   } = techStackDetails;
 
   // Tech items for marquee rows
@@ -40,6 +40,7 @@ function Home() {
     { icon: js, label: "JavaScript" },
     { icon: ts, label: "TypeScript" },
     { icon: react, label: "React" },
+    { icon: nextjs, label: "Next.js" },
     { icon: redux, label: "Redux" },
     { icon: node, label: "Node.js" },
     { icon: python, label: "Python" },
@@ -535,108 +536,83 @@ function Home() {
         {/* CATEGORIZED SKILL BARS */}
         <div className="container mx-auto max-width mb-16">
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Frontend */}
-            <div className="p-6 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-xl border border-white/20 dark:border-neutral-800">
-              <h3 className="text-sm font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-5">Frontend</h3>
-              <div className="space-y-4">
-                {[
-                  { name: "React / Redux", level: 90 },
+            {[
+              {
+                label: "Frontend",
+                labelColor: "text-blue-600 dark:text-blue-400",
+                colors: { light: "#93c5fd", main: "#3b82f6", dark: "#1d4ed8", glow: "rgba(59,130,246,0.55)", text: "#3b82f6" },
+                skills: [
+                  { name: "React / Next.js", level: 88 },
                   { name: "JavaScript / TypeScript", level: 85 },
                   { name: "Tailwind CSS / Bootstrap", level: 90 },
                   { name: "HTML / CSS / Sass", level: 95 },
-                ].map(({ name, level }) => (
-                  <div key={name}>
-                    <div className="flex justify-between mb-1.5">
-                      <span className="text-sm font-medium text-dark-heading dark:text-light-heading">{name}</span>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">{level}%</span>
-                    </div>
-                    <div className="h-2 bg-gray-100 dark:bg-neutral-700 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
-                        style={{ width: `${level}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Backend */}
-            <div className="p-6 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-xl border border-white/20 dark:border-neutral-800">
-              <h3 className="text-sm font-bold text-green-600 dark:text-green-400 uppercase tracking-widest mb-5">Backend</h3>
-              <div className="space-y-4">
-                {[
+                ],
+              },
+              {
+                label: "Backend",
+                labelColor: "text-emerald-600 dark:text-emerald-400",
+                colors: { light: "#6ee7b7", main: "#10b981", dark: "#065f46", glow: "rgba(16,185,129,0.55)", text: "#10b981" },
+                skills: [
                   { name: "Node.js / Express", level: 80 },
                   { name: "Python / FastAPI", level: 75 },
                   { name: "REST API Design", level: 85 },
                   { name: "PHP", level: 65 },
-                ].map(({ name, level }) => (
-                  <div key={name}>
-                    <div className="flex justify-between mb-1.5">
-                      <span className="text-sm font-medium text-dark-heading dark:text-light-heading">{name}</span>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">{level}%</span>
-                    </div>
-                    <div className="h-2 bg-gray-100 dark:bg-neutral-700 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-green-400 to-green-600 rounded-full"
-                        style={{ width: `${level}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Database */}
-            <div className="p-6 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-xl border border-white/20 dark:border-neutral-800">
-              <h3 className="text-sm font-bold text-purple-600 dark:text-purple-400 uppercase tracking-widest mb-5">Database</h3>
-              <div className="space-y-4">
-                {[
+                ],
+              },
+              {
+                label: "Database",
+                labelColor: "text-violet-600 dark:text-violet-400",
+                colors: { light: "#c4b5fd", main: "#8b5cf6", dark: "#5b21b6", glow: "rgba(139,92,246,0.55)", text: "#8b5cf6" },
+                skills: [
                   { name: "MySQL / PostgreSQL", level: 80 },
                   { name: "MongoDB", level: 75 },
                   { name: "Firebase", level: 70 },
-                ].map(({ name, level }) => (
-                  <div key={name}>
-                    <div className="flex justify-between mb-1.5">
-                      <span className="text-sm font-medium text-dark-heading dark:text-light-heading">{name}</span>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">{level}%</span>
-                    </div>
-                    <div className="h-2 bg-gray-100 dark:bg-neutral-700 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full"
-                        style={{ width: `${level}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* DevOps & Tools */}
-            <div className="p-6 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-xl border border-white/20 dark:border-neutral-800">
-              <h3 className="text-sm font-bold text-orange-600 dark:text-orange-400 uppercase tracking-widest mb-5">DevOps & Tools</h3>
-              <div className="space-y-4">
-                {[
+                ],
+              },
+              {
+                label: "DevOps & Tools",
+                labelColor: "text-orange-600 dark:text-orange-400",
+                colors: { light: "#fdba74", main: "#f97316", dark: "#c2410c", glow: "rgba(249,115,22,0.55)", text: "#f97316" },
+                skills: [
                   { name: "Git / GitHub", level: 85 },
                   { name: "Docker", level: 65 },
                   { name: "Google Cloud", level: 70 },
                   { name: "Figma / Postman", level: 75 },
-                ].map(({ name, level }) => (
-                  <div key={name}>
-                    <div className="flex justify-between mb-1.5">
-                      <span className="text-sm font-medium text-dark-heading dark:text-light-heading">{name}</span>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">{level}%</span>
+                ],
+              },
+            ].map(({ label, labelColor, colors, skills }) => (
+              <div key={label} className="p-6 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-xl border border-white/20 dark:border-neutral-800">
+                <h3 className={`text-sm font-bold uppercase tracking-widest mb-5 ${labelColor}`}>{label}</h3>
+                <div className="space-y-5">
+                  {skills.map(({ name, level }) => (
+                    <div key={name}>
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-sm font-semibold text-dark-heading dark:text-light-heading">{name}</span>
+                        <span
+                          className="text-xs font-black px-2 py-0.5 rounded-lg"
+                          style={{ color: colors.text, background: colors.glow.replace("0.55", "0.12") }}
+                        >
+                          {level}%
+                        </span>
+                      </div>
+                      <div className="bar-track">
+                        <div
+                          className="bar-fill"
+                          style={{
+                            width: `${level}%`,
+                            background: `linear-gradient(135deg, ${colors.light} 0%, ${colors.main} 45%, ${colors.dark} 100%)`,
+                            boxShadow: `0 0 14px ${colors.glow}, 0 3px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(0,0,0,0.15)`,
+                          }}
+                        >
+                          <div className="bar-shine" />
+                          <div className="bar-dot" />
+                        </div>
+                      </div>
                     </div>
-                    <div className="h-2 bg-gray-100 dark:bg-neutral-700 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-orange-400 to-orange-600 rounded-full"
-                        style={{ width: `${level}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
 

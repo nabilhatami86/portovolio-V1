@@ -13,7 +13,7 @@ function Technologies() {
   const {
     html, js, ts, node, python, react, tailwind, sass, bootstrap,
     vscode, git, github, npm, postman, figma, cloud, cisco, winbox,
-    mongodb, mysql, firebase, docker, fastapi, postgresql,
+    mongodb, mysql, firebase, docker, fastapi, postgresql, nextjs,
   } = techStackDetails;
 
   const categories = [
@@ -33,6 +33,7 @@ function Technologies() {
       },
       skills: [
         { name: "React / Redux", level: 90, icon: react },
+        { name: "Next.js", level: 80, icon: nextjs },
         { name: "JavaScript / TypeScript", level: 85, icon: js },
         { name: "Tailwind CSS", level: 90, icon: tailwind },
         { name: "HTML / CSS", level: 95, icon: html },
