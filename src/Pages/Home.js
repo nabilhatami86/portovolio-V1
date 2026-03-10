@@ -293,13 +293,26 @@ function Home() {
 
   return (
     <div className="overflow-x-hidden">
+
+      {/* GLOBAL LIGHT MODE BACKGROUND DECORATION */}
+      <div className="fixed inset-0 pointer-events-none -z-10 dark:hidden">
+        {/* top-right mesh */}
+        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-blue-200/50 via-indigo-200/30 to-transparent blur-3xl" />
+        {/* bottom-left mesh */}
+        <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-blue-100/60 via-sky-100/30 to-transparent blur-3xl" />
+        {/* center subtle */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-blue-50/80 blur-3xl" />
+      </div>
+
       {/* HERO SECTION */}
       <section id="hero" className="relative overflow-hidden container mx-auto max-width section md:flex items-center justify-between pt-32 md:pt-40 min-h-screen">
-        {/* Background Glow */}
+        {/* Background Glow — stronger in light mode */}
         <div
           ref={glowRef}
-          className="absolute -top-40 -left-40 w-[520px] h-[520px] bg-blue-500/30 rounded-full blur-3xl"
+          className="absolute -top-40 -left-40 w-[560px] h-[560px] bg-blue-400/25 dark:bg-blue-500/30 rounded-full blur-3xl"
         />
+        {/* Extra right glow light mode */}
+        <div className="absolute top-20 right-0 w-80 h-80 bg-indigo-300/20 dark:hidden rounded-full blur-3xl" />
 
         {/* TEXT */}
         <div className="relative z-10 max-w-xl">
@@ -369,7 +382,7 @@ function Home() {
       </section>
 
       {/* KEY HIGHLIGHTS */}
-      <section className="py-16">
+      <section className="py-16 bg-gradient-to-r from-blue-50/60 via-white/0 to-indigo-50/60 dark:from-transparent dark:to-transparent">
         <div className="container mx-auto max-width">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[

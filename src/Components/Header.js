@@ -33,7 +33,7 @@ function Header() {
   ];
 
   return (
-    <header className="fixed top-0 w-full z-50 backdrop-blur-md bg-white/70 dark:bg-black/60 border-b border-black/5 dark:border-white/10">
+    <header className="fixed top-0 w-full z-50 backdrop-blur-md bg-white/90 dark:bg-black/60 border-b border-blue-100 dark:border-white/10 shadow-sm dark:shadow-none">
       <div className="container mx-auto max-width px-4 flex justify-between items-center py-4 md:py-6">
         {/* Logo */}
         <NavLink to="/" className="hover:scale-105 transition-transform duration-300">
